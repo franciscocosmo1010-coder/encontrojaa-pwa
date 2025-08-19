@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+  <meta name="theme-color" content="#ff4081"/>
+  <title>EncontroJá</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+</head>
+<body>
+  <div class="appbar">
+    <div class="logo">EJ</div>
+    <h1>EncontroJá</h1>
+    <div style="margin-left:auto" class="row">
+      <span id="premiumBadge" class="badge hidden">Premium</span>
+      <button class="btn soft" id="btnInstall" title="Instalar">Instalar</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Auth / Onboarding -->
+    <div id="viewAuth" class="card">
+      <h2>Crie seu perfil</h2>
+      <p class="small">Este app é uma versão <b>PWA</b> que funciona offline e salva seus dados no seu dispositivo. Para uso multiusuário em produção, conecte um backend depois.</p>
+      <div class="grid">
+        <div>
+          <label>Nome</label>
+          <input id="name" placeholder="Seu nome" />
+        </div>
+        <div>
+          <label>Idade</label>
+          <input id="age" type="number" min="18" value="25"/>
+        </div>
+        <div>
+          <label>Bio</label>
+          <textarea id="bio" rows="3" placeholder="Fale um pouco sobre você"></textarea>
+        </div>
+        <div>
+          <label>Preferência</label>
+          <select id="pref">
+            <option value="A">Todos</option>
+            <option value="M">Homens</option>
+            <option value="F">Mulheres</option>
+          </select>
+        </div>
+      </div>
+      <div class="toolbar">
+        <div class="row chips">
+          <span class="chip">Música</span><span class="chip">Viagens</span><span class="chip">Esportes</span><span class="chip">Filmes</span><span class="chip">Tecnologia</span><span class="chip">Pets</span>
+        </div>
+        <div class="actions">
+          <button class="btn ghost" id="btnTogglePremium">Simular Premium</button>
+          <button class="btn" id="btnStart">Começar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discover -->
+    <div id="viewDiscover" class="hidden">
+      <div class="toolbar">
+        <div class="row">
+          <span>Idade: <b id="ageRange">18-60</b></span>
+          <span>Raio: <b id="kmRange">100km</b></span>
+        </div>
+        <div class="actions">
+          <button class="btn soft" id="btnFilters">Filtros</button>
+          <button class="btn soft" id="btnLikesYou">Quem curtiu você</button>
+        </div>
+      </div>
+      <div id="profiles" class="grid"></div>
+      <div class="nav">
+        <button class="btn soft" id="btnPass">Passar</button>
+        <button class="btn" id="btnLike">Curtir</button>
+        <button class="btn soft" id="btnRewind">Rewind</button>
+      </div>
+    </div>
+
+    <!-- Matches -->
+    <div id="viewMatches" class="hidden">
+      <div class="toolbar">
+        <h2>Matches</h2>
+        <div class="actions">
+          <button class="btn soft" id="btnBackToDiscover">Descobrir</button>
+        </div>
+      </div>
+      <div id="matches" class="list"></div>
+    </div>
+
+    <!-- Chat -->
+    <div id="viewChat" class="hidden card">
+      <div class="toolbar">
+        <h2 id="chatTitle">Chat</h2>
+        <div class="actions">
+          <button class="btn soft" id="btnCloseChat">Fechar</button>
+        </div>
+      </div>
+      <div id="chatMessages" class="chat"></div>
+      <div class="row" style="margin-top:8px">
+        <input id="chatInput" placeholder="Mensagem..." />
+        <button class="btn" id="btnSendChat">Enviar</button>
+      </div>
+    </div>
+
+    <!-- Likes You -->
+    <div id="viewLikes" class="hidden card">
+      <div class="toolbar">
+        <h2>Quem curtiu você</h2>
+        <div class="actions">
+          <button class="btn soft" id="btnCloseLikes">Fechar</button>
+        </div>
+      </div>
+      <div id="likesList" class="list"></div>
+    </div>
+
+    <!-- Admin (local) -->
+    <div class="footer">
+      <button class="btn ghost" id="btnExport">Exportar dados</button>
+      <button class="btn ghost" id="btnReset">Resetar app</button>
+      <p class="small">Versão PWA: dados ficam no seu navegador. Para produção multiusuário, conecte Firebase ou outro backend.</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
+    }
+  </script>
+</body>
+</html>
