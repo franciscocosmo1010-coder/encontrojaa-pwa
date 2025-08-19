@@ -1,0 +1,22 @@
+{
+  "name": "encontroja-pwa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EncontroJá - PWA empacotado com Capacitor para Android/iOS",
+  "scripts": {
+    "build": "mkdir -p www && cp -R ../index.html ../styles.css ../app.js ../sw.js ../manifest.webmanifest ./www/",
+    "cap:add:android": "npx cap add android",
+    "cap:add:ios": "npx cap add ios",
+    "cap:copy": "npx cap copy",
+    "cap:open:android": "npx cap open android",
+    "cap:open:ios": "npx cap open ios"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/ios": "^6.0.0",
+    "@capacitor/core": "^6.0.0"
+  }
+}

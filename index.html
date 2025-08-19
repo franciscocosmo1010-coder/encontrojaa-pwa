@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-  <meta name="theme-color" content="#ff4081"/>
+  <meta name="theme-color" content="#ff4d7e"/>
   <title>EncontroJá</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
@@ -14,7 +14,9 @@
     <div class="logo">EJ</div>
     <h1>EncontroJá</h1>
     <div style="margin-left:auto" class="row">
-      <span id="premiumBadge" class="badge hidden">Premium</span>
+      <span id="planBadge" class="badge plan hidden">Premium</span>
+      <button class="btn soft" id="btnBoost" title="Boost">Boost</button>
+      <button class="btn soft" id="btnPlans" title="Planos">Planos</button>
       <button class="btn soft" id="btnInstall" title="Instalar">Instalar</button>
     </div>
   </div>
@@ -23,7 +25,7 @@
     <!-- Auth / Onboarding -->
     <div id="viewAuth" class="card">
       <h2>Crie seu perfil</h2>
-      <p class="small">Este app é uma versão <b>PWA</b> que funciona offline e salva seus dados no seu dispositivo. Para uso multiusuário em produção, conecte um backend depois.</p>
+      <p class="small">Este app é uma versão <b>PWA</b> que funciona offline e salva seus dados no seu dispositivo. Para produção multiusuário, conecte um backend depois.</p>
       <div class="grid">
         <div>
           <label>Nome</label>
@@ -51,7 +53,6 @@
           <span class="chip">Música</span><span class="chip">Viagens</span><span class="chip">Esportes</span><span class="chip">Filmes</span><span class="chip">Tecnologia</span><span class="chip">Pets</span>
         </div>
         <div class="actions">
-          <button class="btn ghost" id="btnTogglePremium">Simular Premium</button>
           <button class="btn" id="btnStart">Começar</button>
         </div>
       </div>
@@ -70,10 +71,11 @@
         </div>
       </div>
       <div id="profiles" class="grid"></div>
-      <div class="nav">
-        <button class="btn soft" id="btnPass">Passar</button>
-        <button class="btn" id="btnLike">Curtir</button>
-        <button class="btn soft" id="btnRewind">Rewind</button>
+      <div class="actions-deck">
+        <button class="action-round action-pass" id="btnPass" title="Passar">✕</button>
+        <button class="action-round action-like" id="btnLike" title="Curtir">❤</button>
+        <button class="action-round action-rewind" id="btnRewind" title="Rewind">↺</button>
+        <button class="btn soft" id="btnChatRequest" title="Chat Request">Chat Request</button>
       </div>
     </div>
 
@@ -119,6 +121,48 @@
       <button class="btn ghost" id="btnExport">Exportar dados</button>
       <button class="btn ghost" id="btnReset">Resetar app</button>
       <p class="small">Versão PWA: dados ficam no seu navegador. Para produção multiusuário, conecte Firebase ou outro backend.</p>
+    </div>
+  </div>
+
+  <!-- Planos -->
+  <div id="plansModal">
+    <div class="sheet">
+      <h2>Planos</h2>
+      <div class="grid">
+        <div class="plan-card">
+          <h3>Grátis</h3>
+          <ul>
+            <li>Zapping/curtidas básicas</li>
+            <li>Mensagens com matches (limite diário)</li>
+            <li>Sem ver "Quem curtiu você"</li>
+          </ul>
+          <div class="price">R$ 0/mês</div>
+          <div class="row"><button class="btn soft" id="chooseFree">Ficar no Grátis</button></div>
+        </div>
+        <div class="plan-card">
+          <h3>Plus</h3>
+          <ul>
+            <li>Likes ilimitados</li>
+            <li>Filtros estendidos</li>
+            <li>Sem anúncios</li>
+          </ul>
+          <div class="price">R$ 14,90/mês</div>
+          <div class="row"><button class="btn soft" id="choosePlus">Assinar Plus</button></div>
+        </div>
+        <div class="plan-card">
+          <h3>Premium</h3>
+          <ul>
+            <li>Ver "Quem curtiu você"</li>
+            <li>5 Chat Requests por dia</li>
+            <li>1 Boost grátis por semana</li>
+            <li>"Chances" de compatibilidade</li>
+            <li>Rewind</li>
+          </ul>
+          <div class="price">R$ 19,90/mês</div>
+          <div class="row"><button class="btn" id="choosePremium">Assinar Premium</button></div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:12px"><button class="btn ghost" id="closePlans">Fechar</button></div>
     </div>
   </div>
 

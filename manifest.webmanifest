@@ -1,13 +1,13 @@
 {
-  "id": "/encontrojaa-pwa/",
+  "id": "/",
   "name": "EncontroJá",
   "short_name": "EncontroJá",
-  "start_url": "/encontrojaa-pwa/",
-  "scope": "/encontrojaa-pwa/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#ff4081",
-  "description": "App de relacionamento PWA",
+  "theme_color": "#ff4d7e",
+  "description": "App de relacionamento PWA com planos Premium e limites de mensagens.",
   "icons": [
     {
       "src": "assets/icons/icon-192.png",
