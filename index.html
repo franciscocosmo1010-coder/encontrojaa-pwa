@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-  <meta name="theme-color" content="#1a1a1a"/>
+  <meta name="theme-color" content="#111"/>
   <title>EncontroJá</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
@@ -14,9 +14,9 @@
     <h1>EncontroJá</h1>
     <div style="margin-left:auto" class="row">
       <span id="planBadge" class="badge plan hidden">Premium</span>
-      <button class="btn soft" id="btnBoost">🚀</button>
-      <button class="btn soft" id="btnPlans">💎</button>
-      <button class="btn soft" id="btnInstall">⬇️</button>
+      <button class="btn soft" id="btnBoost" title="Boost semanal">🚀</button>
+      <button class="btn soft" id="btnPlans" title="Planos">💎</button>
+      <button class="btn soft" id="btnInstall" title="Instalar">⬇️</button>
     </div>
   </div>
 
@@ -32,7 +32,10 @@
         <select id="gender"><option value="M">Homem</option><option value="F">Mulher</option></select>
         <select id="pref"><option value="A">Ambos</option><option value="M">Homens</option><option value="F">Mulheres</option></select>
       </div>
-      <div class="toolbar"><button class="btn" id="btnStart">Começar</button></div>
+      <div class="toolbar">
+        <label><input type="checkbox" id="agreeTos"/> Declaro ser maior de 18 e concordo com a Política do app</label>
+        <button class="btn" id="btnStart">Começar</button>
+      </div>
     </div>
 
     <!-- Discover -->
@@ -44,12 +47,24 @@
           <button class="btn soft" id="btnLikesYou">Quem curtiu você</button>
         </div>
       </div>
-      <div id="profiles" class="grid"></div>
+      <div id="profiles" class="deck"></div>
       <div class="actions-deck">
         <button class="action-round action-pass" id="btnPass">✕</button>
         <button class="action-round action-like" id="btnLike">❤</button>
         <button class="action-round action-rewind" id="btnRewind">↺</button>
       </div>
+    </div>
+
+    <!-- Likes -->
+    <div id="viewLikes" class="hidden card">
+      <div class="toolbar"><h2>Quem curtiu você</h2><button class="btn ghost" id="closeLikes">Fechar</button></div>
+      <div id="likesList" class="grid"></div>
+    </div>
+
+    <!-- Matches -->
+    <div id="viewMatches" class="hidden card">
+      <h2>Seus matches</h2>
+      <div id="matchesList" class="grid"></div>
     </div>
 
     <!-- Perfil -->
@@ -62,7 +77,7 @@
       <select id="profileRelation"><option value="">Relacionamento</option><option>Solteiro</option><option>Casado</option></select>
       <select id="profilePrefRel"><option value="">Preferência de Relacionamento</option><option>Amizade</option><option>Namoro</option><option>Casual</option></select>
       <select id="profileReligion"><option value="">Religião</option><option>Cristão</option><option>Ateu</option><option>Outros</option></select>
-      <select id="profileSign"><option value="">Signo</option><option>Áries</option><option>Touro</option><option>Gêmeos</option></select>
+      <select id="profileSign"><option value="">Signo</option><option>Áries</option><option>Touro</option><option>Gêmeos</option><option>Câncer</option><option>Leão</option><option>Virgem</option><option>Libra</option><option>Escorpião</option><option>Sagitário</option><option>Capricórnio</option><option>Aquário</option><option>Peixes</option></select>
       <select id="profileNationality"><option value="">Nacionalidade</option><option>Brasileiro</option><option>Estrangeiro</option></select>
       <select id="profileEthnicity"><option value="">Etnia</option><option>Branco</option><option>Negro</option><option>Pardo</option></select>
       <input id="profileHeight" type="number" placeholder="Altura (cm)"/>
@@ -89,7 +104,10 @@
       <select id="filterReligion"><option value="">Religião</option><option>Cristão</option><option>Ateu</option></select>
       <select id="filterSign"><option value="">Signo</option><option>Áries</option><option>Touro</option></select>
       <select id="filterBody"><option value="">Tipo físico</option><option>Magro</option><option>Normal</option></select>
-      <button class="btn" id="btnApplyFilters">Aplicar</button><button class="btn ghost" id="btnCloseFilters">Fechar</button>
+      <div class="toolbar">
+        <button class="btn" id="btnApplyFilters">Aplicar</button>
+        <button class="btn ghost" id="btnCloseFilters">Fechar</button>
+      </div>
     </div>
 
     <!-- Premium -->
@@ -101,7 +119,7 @@
         <li>Boost semanal</li>
         <li>Rewind</li>
       </ul>
-      <button class="btn" id="btnBuyPremium">Assinar por R$19,90/mês</button>
+      <a class="btn" id="btnBuyPremium" href="https://pay.encontroja.example/premium" target="_blank" rel="noopener">Assinar por R$19,90/mês</a>
       <button class="btn ghost" id="btnClosePremium">Fechar</button>
     </div>
   </div>
