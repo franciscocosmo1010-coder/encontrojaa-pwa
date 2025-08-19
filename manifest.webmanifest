@@ -1,10 +1,13 @@
 {
-  "name": "EncontroJá Web",
+  "id": "/encontrojaa-pwa/",
+  "name": "EncontroJá",
   "short_name": "EncontroJá",
-  "start_url": ".",
+  "start_url": "/encontrojaa-pwa/",
+  "scope": "/encontrojaa-pwa/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ff4081",
+  "description": "App de relacionamento PWA",
   "icons": [
     {
       "src": "assets/icons/icon-192.png",
