@@ -1,0 +1,24 @@
+{
+  "name": "encontroja-mobile",
+  "version": "1.0.1",
+  "private": true,
+  "description": "EncontroJ\u00e1 mobile apps (Capacitor wrapper + IAP + account deletion screen).",
+  "scripts": {
+    "postinstall": "cap sync",
+    "android": "cap open android",
+    "ios": "cap open ios",
+    "sync": "cap sync",
+    "add:android": "cap add android",
+    "add:ios": "cap add ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/core": "^6.1.0",
+    "@capacitor/ios": "^6.1.0",
+    "@revenuecat/purchases-capacitor": "^6.11.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.0",
+    "typescript": "^5.4.0"
+  }
+}

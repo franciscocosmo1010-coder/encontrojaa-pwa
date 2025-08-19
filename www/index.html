@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+  <meta name="theme-color" content="#111"/>
+  <title>EncontroJá</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark">
+  <div class="appbar">
+    <div class="logo">EJ</div>
+    <h1>EncontroJá</h1>
+    <div style="margin-left:auto" class="row">
+      <span id="planBadge" class="badge plan hidden">Premium</span>
+      <button class="btn soft" id="btnBoost" title="Boost semanal">🚀</button>
+      <button class="btn soft" id="btnPlans" title="Planos">💎</button>
+      <button class="btn soft" id="btnInstall" title="Instalar">⬇️</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Cadastro -->
+    <div id="viewAuth" class="card">
+      <h2>Crie sua conta</h2>
+      <div class="grid">
+        <input id="login" placeholder="Email ou Telefone"/>
+        <input id="name" placeholder="Nome"/>
+        <input id="age" type="number" min="18" value="25"/>
+        <textarea id="bio" rows="3" placeholder="Bio"></textarea>
+        <select id="gender"><option value="M">Homem</option><option value="F">Mulher</option></select>
+        <select id="pref"><option value="A">Ambos</option><option value="M">Homens</option><option value="F">Mulheres</option></select>
+      </div>
+      <div class="toolbar">
+        <label><input type="checkbox" id="agreeTos"/> Declaro ser maior de 18 e concordo com a Política do app</label>
+        <button class="btn" id="btnStart">Começar</button>
+      </div>
+    </div>
+
+    <!-- Discover -->
+    <div id="viewDiscover" class="hidden">
+      <div class="toolbar">
+        <div class="row"><span>Idade: <b id="ageRange">18-60</b></span><span>Raio: <b id="kmRange">100km</b></span></div>
+        <div class="actions">
+          <button class="btn soft" id="btnFilters">Filtros</button>
+          <button class="btn soft" id="btnLikesYou">Quem curtiu você</button>
+        </div>
+      </div>
+      <div id="profiles" class="deck"></div>
+      <div class="actions-deck">
+        <button class="action-round action-pass" id="btnPass">✕</button>
+        <button class="action-round action-like" id="btnLike">❤</button>
+        <button class="action-round action-rewind" id="btnRewind">↺</button>
+      </div>
+    </div>
+
+    <!-- Likes (Premium) -->
+    <div id="viewLikes" class="hidden card">
+      <div class="toolbar"><h2>Quem curtiu você</h2><button class="btn ghost" id="closeLikes">Fechar</button></div>
+      <div id="likesList" class="grid"></div>
+    </div>
+
+    <!-- Matches + Chat -->
+    <div id="viewMatches" class="hidden card">
+      <h2>Seus matches</h2>
+      <div id="matchesList" class="grid"></div>
+    </div>
+
+    <!-- Perfil -->
+    <div id="viewProfile" class="hidden">
+      <h2>Meu perfil</h2>
+      <input id="profileName" placeholder="Nome"/>
+      <input id="profileBirth" type="date"/>
+      <input id="profileLocation" placeholder="Localização"/>
+      <input id="profileJob" placeholder="Profissão"/>
+      <select id="profileRelation"><option value="">Relacionamento</option><option>Solteiro</option><option>Casado</option></select>
+      <select id="profilePrefRel"><option value="">Preferência de Relacionamento</option><option>Amizade</option><option>Namoro</option><option>Casual</option></select>
+      <select id="profileReligion"><option value="">Religião</option><option>Cristão</option><option>Ateu</option><option>Outros</option></select>
+      <select id="profileSign"><option value="">Signo</option><option>Áries</option><option>Touro</option><option>Gêmeos</option><option>Câncer</option><option>Leão</option><option>Virgem</option><option>Libra</option><option>Escorpião</option><option>Sagitário</option><option>Capricórnio</option><option>Aquário</option><option>Peixes</option></select>
+      <select id="profileNationality"><option value="">Nacionalidade</option><option>Brasileiro</option><option>Estrangeiro</option></select>
+      <select id="profileEthnicity"><option value="">Etnia</option><option>Branco</option><option>Negro</option><option>Pardo</option></select>
+      <input id="profileHeight" type="number" placeholder="Altura (cm)"/>
+      <select id="profileBody"><option value="">Tipo físico</option><option>Magro</option><option>Normal</option><option>Atlético</option></select>
+      <select id="profileSmoke"><option value="">Fumante</option><option>Não</option><option>Socialmente</option></select>
+      <select id="profileDrink"><option value="">Bebida</option><option>Não</option><option>Socialmente</option><option>Frequentemente</option></select>
+      <select id="profileParty"><option value="">Festa</option><option>Nunca</option><option>Às vezes</option><option>Sempre</option></select>
+      <select id="profileTattoo"><option value="">Tatuagens</option><option>Não</option><option>Sim</option></select>
+      <select id="profileExercise"><option value="">Exercício</option><option>Nunca</option><option>Às vezes</option><option>Frequentemente</option></select>
+      <select id="profileDiet"><option value="">Dieta</option><option>Onívoro</option><option>Vegetariano</option></select>
+      <select id="profilePets"><option value="">Animais de estimação</option><option>Nenhum</option><option>Cão</option><option>Gato</option></select>
+      <div class="gallery" id="photoGallery"></div>
+      <input type="file" id="photoUpload" accept="image/*"/>
+      <textarea id="profileBio" placeholder="Sobre mim"></textarea>
+    </div>
+
+    <!-- Filtros Avançados -->
+    <div id="viewFilters" class="hidden card">
+      <h2>Filtros Avançados</h2>
+      <label>Idade</label><input type="range" id="filterMinAge" min="18" max="70" value="18"/> <input type="range" id="filterMaxAge" min="18" max="70" value="60"/>
+      <label>Distância (km)</label><input type="range" id="filterKm" min="5" max="200" value="100"/>
+      <label><input type="checkbox" id="filterOnline"/> Apenas online</label>
+      <label><input type="checkbox" id="filterCountry"/> Apenas do meu país</label>
+      <select id="filterReligion"><option value="">Religião</option><option>Cristão</option><option>Ateu</option></select>
+      <select id="filterSign"><option value="">Signo</option><option>Áries</option><option>Touro</option></select>
+      <select id="filterBody"><option value="">Tipo físico</option><option>Magro</option><option>Normal</option></select>
+      <div class="toolbar">
+        <button class="btn" id="btnApplyFilters">Aplicar</button>
+        <button class="btn ghost" id="btnCloseFilters">Fechar</button>
+      </div>
+    </div>
+
+    <!-- Premium (3 planos) -->
+    <div id="viewPremium" class="hidden card">
+      <h2>Assinatura Premium</h2>
+      <ul>
+        <li>Ver quem curtiu você</li>
+        <li>Filtros avançados</li>
+        <li>Boost semanal</li>
+        <li>Rewind</li>
+      </ul>
+      <div class="grid">
+        <button class="btn" id="planMensal">Mensal - R$9,90</button>
+        <button class="btn" id="planTrimestral">Trimestral - R$14,90</button>
+        <button class="btn" id="planAnual">Anual - R$19,90</button>
+      </div>
+      <button class="btn ghost" id="btnClosePremium">Fechar</button>
+    </div>
+  
+    <!-- Configurações -->
+    <div id="viewSettings" class="hidden card">
+      <h2>Configurações</h2>
+      <ul>
+        <li><a href="privacy.html" target="_blank">Política de Privacidade</a></li>
+        <li><button class="btn ghost" id="btnDeleteAccount">Excluir conta</button></li>
+      </ul>
+      <button class="btn" id="btnCloseSettings">Fechar</button>
+    </div>
+
+  </div>
+
+  <div class="navbar">
+    <button class="navbtn" id="navSettings">⚙️</button>
+    <button class="navbtn" id="navDiscover">🔍</button>
+    <button class="navbtn" id="navMatches">💌</button>
+    <button class="navbtn" id="navProfile">👤</button>
+  </div>
+
+  <script src="iap-bridge.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
