@@ -55,13 +55,13 @@
       </div>
     </div>
 
-    <!-- Likes -->
+    <!-- Likes (Premium) -->
     <div id="viewLikes" class="hidden card">
       <div class="toolbar"><h2>Quem curtiu você</h2><button class="btn ghost" id="closeLikes">Fechar</button></div>
       <div id="likesList" class="grid"></div>
     </div>
 
-    <!-- Matches -->
+    <!-- Matches + Chat -->
     <div id="viewMatches" class="hidden card">
       <h2>Seus matches</h2>
       <div id="matchesList" class="grid"></div>
@@ -110,7 +110,7 @@
       </div>
     </div>
 
-    <!-- Premium -->
+    <!-- Premium (planos <= R$20) -->
     <div id="viewPremium" class="hidden card">
       <h2>Assinatura Premium</h2>
       <ul>
@@ -119,7 +119,11 @@
         <li>Boost semanal</li>
         <li>Rewind</li>
       </ul>
-      <a class="btn" id="btnBuyPremium" href="https://pay.encontroja.example/premium" target="_blank" rel="noopener">Assinar por R$19,90/mês</a>
+      <div class="grid">
+        <button class="btn" id="planMensal">Mensal - R$9,90</button>
+        <button class="btn" id="planTrimestral">Trimestral - R$14,90</button>
+        <button class="btn" id="planAnual">Anual - R$19,90</button>
+      </div>
       <button class="btn ghost" id="btnClosePremium">Fechar</button>
     </div>
   </div>

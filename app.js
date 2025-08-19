@@ -1,4 +1,4 @@
-// EncontroJá - Perfis fake + Auto-like + Monetização (planos <= R$20)
+// EncontroJá - Perfis fake + Auto-like + Monetização (planos <= R$20) - corrigido
 const $ = (q) => document.querySelector(q);
 const $$ = (q) => Array.from(document.querySelectorAll(q));
 
@@ -24,7 +24,7 @@ let state = {
   }
 };
 
-const KEY = 'ej_pwa_monet_v5';
+const KEY = 'ej_pwa_monet_v7';
 function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
 function load(){ const raw = localStorage.getItem(KEY); if(raw){ try{ Object.assign(state, JSON.parse(raw)); }catch(e){} } }
 function now(){ return Date.now(); }
@@ -33,7 +33,8 @@ function show(id){
   ['#viewAuth','#viewDiscover','#viewProfile','#viewFilters','#viewPremium','#viewLikes','#viewMatches'].forEach(v=>{
     const el = document.querySelector(v); if(el) el.classList.add('hidden');
   });
-  document.querySelector(id).classList.remove('hidden');
+  const target = document.querySelector(id);
+  if(target) target.classList.remove('hidden');
 }
 
 // ----------------- Perfis fake -----------------
@@ -145,15 +146,15 @@ function renderDeck(){
   const el = document.createElement('div');
   el.className='card-profile';
   el.innerHTML = `
-    <img src="${p.photos[0]}" alt="${p.name}" style="width:100%;height:360px;object-fit:cover;border-radius:14px">
-    <div class="meta" style="padding:8px 2px">
-      <h3 style="margin:6px 0 2px 0">${p.name}, ${p.age}</h3>
+    <img src="${p.photos[0]}" alt="${p.name}">
+    <div class="meta">
+      <h3>${p.name}, ${p.age}</h3>
       <div class="row">
         <span class="pill">${p.km} km</span>
         <span class="pill">${p.online?'Online':'Offline'}</span>
         <span class="pill">${p.sign}</span>
       </div>
-      <div style="opacity:.9">${p.bio}</div>
+      <div>${p.bio}</div>
     </div>`;
   deck.appendChild(el);
 }
