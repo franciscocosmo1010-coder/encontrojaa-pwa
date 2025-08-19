@@ -7,7 +7,6 @@
   <title>EncontroJá</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
-  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 </head>
 <body class="dark">
   <div class="appbar">
@@ -15,197 +14,104 @@
     <h1>EncontroJá</h1>
     <div style="margin-left:auto" class="row">
       <span id="planBadge" class="badge plan hidden">Premium</span>
-      <button class="btn soft" id="btnBoost" title="Boost">🚀</button>
-      <button class="btn soft" id="btnPlans" title="Planos">💎</button>
-      <button class="btn soft" id="btnInstall" title="Instalar">⬇️</button>
+      <button class="btn soft" id="btnBoost">🚀</button>
+      <button class="btn soft" id="btnPlans">💎</button>
+      <button class="btn soft" id="btnInstall">⬇️</button>
     </div>
   </div>
 
   <div class="container">
-    <!-- Tela de cadastro -->
+    <!-- Cadastro -->
     <div id="viewAuth" class="card">
       <h2>Crie sua conta</h2>
       <div class="grid">
-        <div>
-          <label>Email ou Telefone</label>
-          <input id="login" placeholder="Digite seu email ou número" required/>
-        </div>
-        <div>
-          <label>Nome</label>
-          <input id="name" placeholder="Seu nome" />
-        </div>
-        <div>
-          <label>Idade</label>
-          <input id="age" type="number" min="18" value="25"/>
-        </div>
-        <div>
-          <label>Bio</label>
-          <textarea id="bio" rows="3" placeholder="Fale um pouco sobre você"></textarea>
-        </div>
-        <div>
-          <label>Sexo</label>
-          <select id="gender">
-            <option value="M">Homem</option>
-            <option value="F">Mulher</option>
-          </select>
-        </div>
-        <div>
-          <label>Interesse em</label>
-          <select id="pref">
-            <option value="A">Ambos</option>
-            <option value="M">Homens</option>
-            <option value="F">Mulheres</option>
-          </select>
-        </div>
+        <input id="login" placeholder="Email ou Telefone"/>
+        <input id="name" placeholder="Nome"/>
+        <input id="age" type="number" min="18" value="25"/>
+        <textarea id="bio" rows="3" placeholder="Bio"></textarea>
+        <select id="gender"><option value="M">Homem</option><option value="F">Mulher</option></select>
+        <select id="pref"><option value="A">Ambos</option><option value="M">Homens</option><option value="F">Mulheres</option></select>
       </div>
-      <div class="toolbar">
-        <div class="row chips">
-          <span class="chip">Música</span><span class="chip">Viagens</span><span class="chip">Esportes</span><span class="chip">Filmes</span><span class="chip">Tecnologia</span><span class="chip">Pets</span>
-        </div>
-        <div class="actions">
-          <button class="btn" id="btnStart">Começar</button>
-        </div>
-      </div>
+      <div class="toolbar"><button class="btn" id="btnStart">Começar</button></div>
     </div>
 
     <!-- Discover -->
     <div id="viewDiscover" class="hidden">
       <div class="toolbar">
-        <div class="row">
-          <span>Idade: <b id="ageRange">18-60</b></span>
-          <span>Raio: <b id="kmRange">100km</b></span>
-          <span>País: <b id="countryRange">Todos</b></span>
-        </div>
+        <div class="row"><span>Idade: <b id="ageRange">18-60</b></span><span>Raio: <b id="kmRange">100km</b></span></div>
         <div class="actions">
           <button class="btn soft" id="btnFilters">Filtros</button>
           <button class="btn soft" id="btnLikesYou">Quem curtiu você</button>
-          <button class="btn soft" id="btnVisited">Quem visitou</button>
-          <button class="btn soft" id="btnMyLikes">Quem você curtiu</button>
         </div>
       </div>
       <div id="profiles" class="grid"></div>
       <div class="actions-deck">
-        <button class="action-round action-pass" id="btnPass" title="Passar">✕</button>
-        <button class="action-round action-like" id="btnLike" title="Curtir">❤</button>
-        <button class="action-round action-rewind" id="btnRewind" title="Rewind">↺</button>
-        <button class="btn soft" id="btnChatRequest" title="Chat Request">💬</button>
+        <button class="action-round action-pass" id="btnPass">✕</button>
+        <button class="action-round action-like" id="btnLike">❤</button>
+        <button class="action-round action-rewind" id="btnRewind">↺</button>
       </div>
     </div>
 
-    <!-- Matches -->
-    <div id="viewMatches" class="hidden">
-      <div class="toolbar">
-        <h2>Matches</h2>
-        <div class="actions">
-          <button class="btn soft" id="btnBackToDiscover">Descobrir</button>
-        </div>
-      </div>
-      <div id="matches" class="list"></div>
+    <!-- Perfil -->
+    <div id="viewProfile" class="hidden">
+      <h2>Meu perfil</h2>
+      <input id="profileName" placeholder="Nome"/>
+      <input id="profileBirth" type="date"/>
+      <input id="profileLocation" placeholder="Localização"/>
+      <input id="profileJob" placeholder="Profissão"/>
+      <select id="profileRelation"><option value="">Relacionamento</option><option>Solteiro</option><option>Casado</option></select>
+      <select id="profilePrefRel"><option value="">Preferência de Relacionamento</option><option>Amizade</option><option>Namoro</option><option>Casual</option></select>
+      <select id="profileReligion"><option value="">Religião</option><option>Cristão</option><option>Ateu</option><option>Outros</option></select>
+      <select id="profileSign"><option value="">Signo</option><option>Áries</option><option>Touro</option><option>Gêmeos</option></select>
+      <select id="profileNationality"><option value="">Nacionalidade</option><option>Brasileiro</option><option>Estrangeiro</option></select>
+      <select id="profileEthnicity"><option value="">Etnia</option><option>Branco</option><option>Negro</option><option>Pardo</option></select>
+      <input id="profileHeight" type="number" placeholder="Altura (cm)"/>
+      <select id="profileBody"><option value="">Tipo físico</option><option>Magro</option><option>Normal</option><option>Atlético</option></select>
+      <select id="profileSmoke"><option value="">Fumante</option><option>Não</option><option>Socialmente</option></select>
+      <select id="profileDrink"><option value="">Bebida</option><option>Não</option><option>Socialmente</option><option>Frequentemente</option></select>
+      <select id="profileParty"><option value="">Festa</option><option>Nunca</option><option>Às vezes</option><option>Sempre</option></select>
+      <select id="profileTattoo"><option value="">Tatuagens</option><option>Não</option><option>Sim</option></select>
+      <select id="profileExercise"><option value="">Exercício</option><option>Nunca</option><option>Às vezes</option><option>Frequentemente</option></select>
+      <select id="profileDiet"><option value="">Dieta</option><option>Onívoro</option><option>Vegetariano</option></select>
+      <select id="profilePets"><option value="">Animais de estimação</option><option>Nenhum</option><option>Cão</option><option>Gato</option></select>
+      <div class="gallery" id="photoGallery"></div>
+      <input type="file" id="photoUpload" accept="image/*"/>
+      <textarea id="profileBio" placeholder="Sobre mim"></textarea>
     </div>
 
-    <!-- Chat -->
-    <div id="viewChat" class="hidden card">
-      <div class="toolbar">
-        <h2 id="chatTitle">Chat</h2>
-        <div class="actions">
-          <button class="btn soft" id="btnCloseChat">Fechar</button>
-        </div>
-      </div>
-      <div id="chatMessages" class="chat"></div>
-      <div class="row" style="margin-top:8px">
-        <input id="chatInput" placeholder="Mensagem..." />
-        <button class="btn" id="btnSendChat">Enviar</button>
-      </div>
+    <!-- Filtros Avançados -->
+    <div id="viewFilters" class="hidden card">
+      <h2>Filtros Avançados</h2>
+      <label>Idade</label><input type="range" id="filterMinAge" min="18" max="70" value="18"/> <input type="range" id="filterMaxAge" min="18" max="70" value="60"/>
+      <label>Distância (km)</label><input type="range" id="filterKm" min="5" max="200" value="100"/>
+      <label><input type="checkbox" id="filterOnline"/> Apenas online</label>
+      <label><input type="checkbox" id="filterCountry"/> Apenas do meu país</label>
+      <select id="filterReligion"><option value="">Religião</option><option>Cristão</option><option>Ateu</option></select>
+      <select id="filterSign"><option value="">Signo</option><option>Áries</option><option>Touro</option></select>
+      <select id="filterBody"><option value="">Tipo físico</option><option>Magro</option><option>Normal</option></select>
+      <button class="btn" id="btnApplyFilters">Aplicar</button><button class="btn ghost" id="btnCloseFilters">Fechar</button>
     </div>
 
-    <!-- Likes You -->
-    <div id="viewLikes" class="hidden card">
-      <div class="toolbar">
-        <h2>Quem curtiu você</h2>
-        <div class="actions">
-          <button class="btn soft" id="btnCloseLikes">Fechar</button>
-        </div>
-      </div>
-      <div id="likesList" class="list"></div>
+    <!-- Premium -->
+    <div id="viewPremium" class="hidden card">
+      <h2>Assinatura Premium</h2>
+      <ul>
+        <li>Ver quem curtiu você</li>
+        <li>Filtros avançados</li>
+        <li>Boost semanal</li>
+        <li>Rewind</li>
+      </ul>
+      <button class="btn" id="btnBuyPremium">Assinar por R$19,90/mês</button>
+      <button class="btn ghost" id="btnClosePremium">Fechar</button>
     </div>
-
-    <!-- Visited -->
-    <div id="viewVisited" class="hidden card">
-      <div class="toolbar">
-        <h2>Quem visitou seu perfil</h2>
-        <div class="actions">
-          <button class="btn soft" id="btnCloseVisited">Fechar</button>
-        </div>
-      </div>
-      <div id="visitedList" class="list"></div>
-    </div>
-
-    <!-- My Likes -->
-    <div id="viewMyLikes" class="hidden card">
-      <div class="toolbar">
-        <h2>Perfis que você curtiu</h2>
-        <div class="actions">
-          <button class="btn soft" id="btnCloseMyLikes">Fechar</button>
-        </div>
-      </div>
-      <div id="myLikesList" class="list"></div>
-    </div>
-
   </div>
 
-  <!-- Rodapé -->
   <div class="navbar">
     <button class="navbtn" id="navDiscover">🔍</button>
     <button class="navbtn" id="navMatches">💌</button>
-    <button class="navbtn" id="navLikes">❤️</button>
-    <button class="navbtn" id="navNotifs">🔔</button>
     <button class="navbtn" id="navProfile">👤</button>
   </div>
 
-  <!-- Planos -->
-  <div id="plansModal">
-    <div class="sheet">
-      <h2>Planos</h2>
-      <div class="grid">
-        <div class="plan-card">
-          <h3>Grátis</h3>
-          <ul>
-            <li>Curtidas básicas</li>
-            <li>Mensagens limitadas</li>
-          </ul>
-          <div class="price">R$ 0/mês</div>
-          <div class="row"><button class="btn soft" id="chooseFree">Ficar no Grátis</button></div>
-        </div>
-        <div class="plan-card">
-          <h3>Plus</h3>
-          <ul>
-            <li>Filtros avançados</li>
-            <li>Likes ilimitados</li>
-          </ul>
-          <div class="price">R$ 14,90/mês</div>
-          <div class="row"><button class="btn soft" id="choosePlus">Assinar Plus</button></div>
-        </div>
-        <div class="plan-card">
-          <h3>Premium</h3>
-          <ul>
-            <li>Ver quem curtiu você</li>
-            <li>5 Chat Requests/dia</li>
-            <li>1 Boost/semana</li>
-            <li>Rewind</li>
-          </ul>
-          <div class="price">R$ 19,90/mês</div>
-          <div class="row"><button class="btn" id="choosePremium">Assinar Premium</button></div>
-        </div>
-      </div>
-      <div class="row" style="margin-top:12px"><button class="btn ghost" id="closePlans">Fechar</button></div>
-    </div>
-  </div>
-
   <script src="app.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js'));
-    }
-  </script>
 </body>
 </html>
