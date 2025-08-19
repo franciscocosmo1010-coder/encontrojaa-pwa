@@ -3,30 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-  <meta name="theme-color" content="#ff4d7e"/>
+  <meta name="theme-color" content="#1a1a1a"/>
   <title>EncontroJá</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 </head>
-<body>
+<body class="dark">
   <div class="appbar">
     <div class="logo">EJ</div>
     <h1>EncontroJá</h1>
     <div style="margin-left:auto" class="row">
       <span id="planBadge" class="badge plan hidden">Premium</span>
-      <button class="btn soft" id="btnBoost" title="Boost">Boost</button>
-      <button class="btn soft" id="btnPlans" title="Planos">Planos</button>
-      <button class="btn soft" id="btnInstall" title="Instalar">Instalar</button>
+      <button class="btn soft" id="btnBoost" title="Boost">🚀</button>
+      <button class="btn soft" id="btnPlans" title="Planos">💎</button>
+      <button class="btn soft" id="btnInstall" title="Instalar">⬇️</button>
     </div>
   </div>
 
   <div class="container">
-    <!-- Auth / Onboarding -->
+    <!-- Tela de cadastro -->
     <div id="viewAuth" class="card">
-      <h2>Crie seu perfil</h2>
-      <p class="small">Este app é uma versão <b>PWA</b> que funciona offline e salva seus dados no seu dispositivo. Para produção multiusuário, conecte um backend depois.</p>
+      <h2>Crie sua conta</h2>
       <div class="grid">
+        <div>
+          <label>Email ou Telefone</label>
+          <input id="login" placeholder="Digite seu email ou número" required/>
+        </div>
         <div>
           <label>Nome</label>
           <input id="name" placeholder="Seu nome" />
@@ -40,9 +43,16 @@
           <textarea id="bio" rows="3" placeholder="Fale um pouco sobre você"></textarea>
         </div>
         <div>
-          <label>Preferência</label>
+          <label>Sexo</label>
+          <select id="gender">
+            <option value="M">Homem</option>
+            <option value="F">Mulher</option>
+          </select>
+        </div>
+        <div>
+          <label>Interesse em</label>
           <select id="pref">
-            <option value="A">Todos</option>
+            <option value="A">Ambos</option>
             <option value="M">Homens</option>
             <option value="F">Mulheres</option>
           </select>
@@ -64,10 +74,13 @@
         <div class="row">
           <span>Idade: <b id="ageRange">18-60</b></span>
           <span>Raio: <b id="kmRange">100km</b></span>
+          <span>País: <b id="countryRange">Todos</b></span>
         </div>
         <div class="actions">
           <button class="btn soft" id="btnFilters">Filtros</button>
           <button class="btn soft" id="btnLikesYou">Quem curtiu você</button>
+          <button class="btn soft" id="btnVisited">Quem visitou</button>
+          <button class="btn soft" id="btnMyLikes">Quem você curtiu</button>
         </div>
       </div>
       <div id="profiles" class="grid"></div>
@@ -75,7 +88,7 @@
         <button class="action-round action-pass" id="btnPass" title="Passar">✕</button>
         <button class="action-round action-like" id="btnLike" title="Curtir">❤</button>
         <button class="action-round action-rewind" id="btnRewind" title="Rewind">↺</button>
-        <button class="btn soft" id="btnChatRequest" title="Chat Request">Chat Request</button>
+        <button class="btn soft" id="btnChatRequest" title="Chat Request">💬</button>
       </div>
     </div>
 
@@ -116,12 +129,37 @@
       <div id="likesList" class="list"></div>
     </div>
 
-    <!-- Admin (local) -->
-    <div class="footer">
-      <button class="btn ghost" id="btnExport">Exportar dados</button>
-      <button class="btn ghost" id="btnReset">Resetar app</button>
-      <p class="small">Versão PWA: dados ficam no seu navegador. Para produção multiusuário, conecte Firebase ou outro backend.</p>
+    <!-- Visited -->
+    <div id="viewVisited" class="hidden card">
+      <div class="toolbar">
+        <h2>Quem visitou seu perfil</h2>
+        <div class="actions">
+          <button class="btn soft" id="btnCloseVisited">Fechar</button>
+        </div>
+      </div>
+      <div id="visitedList" class="list"></div>
     </div>
+
+    <!-- My Likes -->
+    <div id="viewMyLikes" class="hidden card">
+      <div class="toolbar">
+        <h2>Perfis que você curtiu</h2>
+        <div class="actions">
+          <button class="btn soft" id="btnCloseMyLikes">Fechar</button>
+        </div>
+      </div>
+      <div id="myLikesList" class="list"></div>
+    </div>
+
+  </div>
+
+  <!-- Rodapé -->
+  <div class="navbar">
+    <button class="navbtn" id="navDiscover">🔍</button>
+    <button class="navbtn" id="navMatches">💌</button>
+    <button class="navbtn" id="navLikes">❤️</button>
+    <button class="navbtn" id="navNotifs">🔔</button>
+    <button class="navbtn" id="navProfile">👤</button>
   </div>
 
   <!-- Planos -->
@@ -132,9 +170,8 @@
         <div class="plan-card">
           <h3>Grátis</h3>
           <ul>
-            <li>Zapping/curtidas básicas</li>
-            <li>Mensagens com matches (limite diário)</li>
-            <li>Sem ver "Quem curtiu você"</li>
+            <li>Curtidas básicas</li>
+            <li>Mensagens limitadas</li>
           </ul>
           <div class="price">R$ 0/mês</div>
           <div class="row"><button class="btn soft" id="chooseFree">Ficar no Grátis</button></div>
@@ -142,9 +179,8 @@
         <div class="plan-card">
           <h3>Plus</h3>
           <ul>
+            <li>Filtros avançados</li>
             <li>Likes ilimitados</li>
-            <li>Filtros estendidos</li>
-            <li>Sem anúncios</li>
           </ul>
           <div class="price">R$ 14,90/mês</div>
           <div class="row"><button class="btn soft" id="choosePlus">Assinar Plus</button></div>
@@ -152,10 +188,9 @@
         <div class="plan-card">
           <h3>Premium</h3>
           <ul>
-            <li>Ver "Quem curtiu você"</li>
-            <li>5 Chat Requests por dia</li>
-            <li>1 Boost grátis por semana</li>
-            <li>"Chances" de compatibilidade</li>
+            <li>Ver quem curtiu você</li>
+            <li>5 Chat Requests/dia</li>
+            <li>1 Boost/semana</li>
             <li>Rewind</li>
           </ul>
           <div class="price">R$ 19,90/mês</div>

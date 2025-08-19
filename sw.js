@@ -1,6 +1,6 @@
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open('ej-v2').then((cache) => cache.addAll([
+    caches.open('ej-v3').then((cache) => cache.addAll([
       './','./index.html','./styles.css','./app.js','./manifest.webmanifest'
     ]))
   );
